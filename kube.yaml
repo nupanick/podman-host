@@ -21,6 +21,8 @@ spec:
     env:
     - name: LISTEN
       value: 0.0.0.0:8001
+    - name: BASE_URL
+      value: http://localhost:8001/freshrss
     ports:
     - hostPort: 8001
       containerPort: 8001
