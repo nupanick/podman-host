@@ -7,8 +7,8 @@ services:
       - ${NGINX_HTTP_PORT}:8000
     restart: always
     volumes:
+      - ./nginx_data:/usr/share/nginx/html:ro
       - ./nginx_conf:/etc/nginx/conf.d:ro
-      - ./klay.gay:/opt/app/klay.gay:ro
 
   freshrss:
     image: docker.io/freshrss/freshrss
