@@ -11,5 +11,6 @@ Host files for klay.gay
 
 - copy sample.env to .env
 - environment variables:
+  - NGINX_HTTP_PORT: port to expose to outside world; use 80 for production.
   - FRESHRSS_ADMIN_PASSWORD: admin password for freshrss. only needed for first run.
 - `podman-compose up -d`

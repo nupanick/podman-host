@@ -1,10 +1,10 @@
 services:
 
-  reverse-proxy:
+  nginx:
     image: docker.io/library/nginx
-    container_name: reverse-proxy
+    container_name: nginx
     ports:
-      - 8000:80
+      - ${NGINX_HTTP_PORT}:8000
     restart: always
     volumes:
       - ./nginx_conf:/etc/nginx/conf.d:ro
