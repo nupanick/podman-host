@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: klay.gay
+spec:
+  containers:
+  - name: reverse-proxy
+    image: docker.io/library/nginx
+    ports:
+    - hostPort: 8000
+      containerPort: 80
+    volumeMounts:
+    - mountPath: /etc/nginx/conf.d
+      name: nginx_conf
+      readOnly: true
+    - mountPath: /opt/app/klay.gay
+      name: site_data
+      readOnly: true
+  - name: freshrss
+    image: docker.io/freshrss/freshrss
+    env:
+    - name: LISTEN
+      value: 0.0.0.0:8001
+    ports:
+    - hostPort: 8001
+      containerPort: 8001
+    volumeMounts:
+    - mountPath: /var/www/FreshRSS/data
+      name: freshrss_data
+  volumes:
+  - name: nginx_conf
+    hostPath:
+      path: ./nginx_conf
+      type: Directory
+  - name: site_data
+    hostPath:
+      path: ./klay.gay
+      type: Directory
+  - name: freshrss_data
+    hostPath:
+      path: ./freshrss_data
+      type: Directory

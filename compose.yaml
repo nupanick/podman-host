@@ -1,0 +1,22 @@
+services:
+
+  reverse-proxy:
+    image: docker.io/library/nginx
+    container_name: reverse-proxy
+    ports:
+      - 8000:80
+    restart: always
+    volumes:
+      - ./nginx_conf:/etc/nginx/conf.d:ro
+      - ./klay.gay:/opt/app/klay.gay:ro
+
+  freshrss:
+    image: docker.io/freshrss/freshrss
+    container_name: freshrss
+    environment:
+      LISTEN: 0.0.0.0:8001
+    ports:
+      - 8001:8001
+    restart: always
+    volumes:
+      - ./freshrss_data:/var/www/FreshRSS/data

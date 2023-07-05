@@ -1,0 +1,70 @@
+# Generation of Kubernetes YAML is still under development!
+#
+# Save the output of this file and use kubectl create -f to import
+# it into Kubernetes.
+#
+# Created with podman-3.0.1
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2023-07-05T00:13:43Z"
+  labels:
+    app: reverse-proxy
+  name: reverse-proxy
+spec:
+  containers:
+  - args:
+    - nginx
+    - -g
+    - daemon off;
+    command:
+    - /docker-entrypoint.sh
+    env:
+    - name: PATH
+      value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    - name: TERM
+      value: xterm
+    - name: container
+      value: podman
+    - name: NGINX_VERSION
+      value: 1.25.1
+    - name: NJS_VERSION
+      value: 0.7.12
+    - name: PKG_RELEASE
+      value: 1~bookworm
+    image: docker.io/library/nginx
+    name: reverse-proxy
+    ports:
+    - containerPort: 80
+      hostPort: 8000
+      protocol: TCP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: true
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: false
+      seLinuxOptions: {}
+    volumeMounts:
+    - mountPath: /etc/nginx/conf.d
+      name: data-Nupa-Code-podman-host-nginx_conf
+      readOnly: true
+    - mountPath: /opt/app/klay.gay
+      name: data-Nupa-Code-podman-host-klay.gay
+      readOnly: true
+    workingDir: /
+  dnsConfig: {}
+  volumes:
+  - hostPath:
+      path: /data/Nupa/Code/podman-host/nginx_conf
+      type: Directory
+    name: data-Nupa-Code-podman-host-nginx_conf
+  - hostPath:
+      path: /data/Nupa/Code/podman-host/klay.gay
+      type: Directory
+    name: data-Nupa-Code-podman-host-klay.gay
+status: {}

@@ -1,0 +1,9 @@
+services:
+  reverse-proxy:
+    image: docker.io/freshrss/freshrss
+    container_name: freshrss
+    ports:
+    - 8001:80
+    restart: always
+    volumes:
+    - ./freshrss_data:/var/www/FreshRSS/data
