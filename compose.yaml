@@ -4,7 +4,7 @@ services:
     image: docker.io/library/nginx
     container_name: nginx
     ports:
-      - ${NGINX_HTTP_PORT}:8000
+      - ${NGINX_HTTP_PORT}:80
     restart: always
     volumes:
       - ./nginx_data:/usr/share/nginx/html:ro
