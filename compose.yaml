@@ -14,9 +14,9 @@ services:
     image: docker.io/freshrss/freshrss
     container_name: freshrss
     environment:
-      BASE_URL: http://localhost:8001/freshrss
-      LISTEN: 0.0.0.0:8001
+      BASE_URL: http://localhost/freshrss
       FRESHRSS_INSTALL: |-
+        --base_url http://localhost/freshrss
         --default_user admin
         --language en
       FRESHRSS_USER: |-
@@ -24,7 +24,7 @@ services:
         --password ${FRESHRSS_ADMIN_PASSWORD}
         --language en
     ports:
-      - 8001:8001
+      - 8001:80
     restart: always
     volumes:
       - ./freshrss_data:/var/www/FreshRSS/data
